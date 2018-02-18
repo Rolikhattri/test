@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= nav_bar fixed: :top, brand: "Ninety Ten" do %>
+    <%= menu_group do %>
+        <%= menu_item "Home", root_path %>
+        <%= menu_item "Signup", new_user_registration_path %>
+    <% end %>
+    <% if current_user %>
+	    <%= menu_group pull: :right do %>
+	        <%= menu_item "Logout", destroy_user_session_path %>
+	    <% end %>
+    <% else %>
+        <%= menu_group pull: :right do %>
+	        <%= menu_item "Login", new_user_session_path %>
+	    <% end %>
+    <% end %>
+<% end %>
+
+<div class="container">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
+</div>
+
+
+</body>
+</html>
